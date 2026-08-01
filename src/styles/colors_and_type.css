@@ -1,0 +1,325 @@
+/* ============================================================
+   Nepsphere — Color & Type Tokens
+   Single source of truth for the design system.
+   ============================================================ */
+
+/* ---------- Webfonts (Google Fonts — substitute for any future custom face) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ============================================================
+     COLORS
+     ============================================================ */
+
+  /* Primary — Sunrise Orange */
+  --primary-50:  #FFF7ED;
+  --primary-100: #FFEDD5;
+  --primary-200: #FED7AA;
+  --primary-300: #FDBA74;
+  --primary-400: #FB923C;
+  --primary-500: #F97316;     /* default primary */
+  --primary-600: #EA580C;     /* brand "Sunrise Orange" */
+  --primary-700: #C2410C;
+  --primary-800: #9A3412;
+  --primary-900: #7C2D12;
+
+  /* Himalayan Blue retained as a heritage / secondary accent */
+  --heritage-blue: #1E3A8A;
+
+  --primary:     var(--primary-600);
+  --primary-fg:  #FFFFFF;
+
+  /* Accent — Nepal Crimson */
+  --crimson-50:  #FEF2F2;
+  --crimson-100: #FEE2E2;
+  --crimson-300: #F87171;
+  --crimson-500: #DC2626;     /* brand "Nepal Red" */
+  --crimson-700: #991B1B;
+
+  --accent:      var(--crimson-500);
+  --accent-fg:   #FFFFFF;
+
+  /* Saffron — secondary accent */
+  --saffron-100: #FEF3C7;
+  --saffron-300: #FBBF24;
+  --saffron-500: #F59E0B;
+  --saffron-700: #B45309;
+
+  /* Emerald — success / verified-state */
+  --emerald-100: #D1FAE5;
+  --emerald-500: #059669;
+  --emerald-700: #047857;
+
+  /* Neutrals — slightly warm */
+  --warm-50:  #FAFAF7;
+  --warm-100: #F4F2EC;
+  --warm-200: #E9E6DD;
+  --warm-300: #D6D2C4;
+  --warm-400: #A8A395;
+  --warm-500: #78736A;
+  --warm-600: #525049;
+  --warm-700: #2F2E2A;
+  --warm-800: #1A1A18;
+  --warm-900: #0F0F0E;
+
+  /* ---- Semantic (use these in components, not the raw scales above) ---- */
+
+  /* Surfaces */
+  --bg:           var(--warm-50);     /* page background */
+  --surface:      #FFFFFF;            /* cards, sheets, modals */
+  --surface-2:    var(--warm-100);    /* hovered surfaces, subtle wells */
+  --surface-3:    var(--warm-200);    /* pressed, deeper wells */
+  --surface-inverse: var(--warm-800);
+
+  /* Foreground / text */
+  --fg:           var(--warm-800);    /* default body */
+  --fg-1:         var(--warm-900);    /* highest emphasis (display, h1) */
+  --fg-2:         var(--warm-700);    /* default body */
+  --fg-3:         var(--warm-500);    /* metadata, secondary */
+  --fg-4:         var(--warm-400);    /* placeholder, disabled */
+  --fg-on-primary: #FFFFFF;
+
+  /* Borders */
+  --border:        #E5E1D8;
+  --border-subtle: #EFECE3;
+  --border-strong: var(--warm-300);
+
+  /* Status */
+  --success:      var(--emerald-500);
+  --success-bg:   var(--emerald-100);
+  --warning:      var(--saffron-500);
+  --warning-bg:   var(--saffron-100);
+  --danger:       var(--crimson-500);
+  --danger-bg:    var(--crimson-50);
+  --info:         var(--primary-500);
+  --info-bg:      var(--primary-50);
+
+  /* Connect intent colors (Friendship / Dating / Marriage) */
+  --intent-friendship: #3B82F6;
+  --intent-dating:     #E31C5F;
+  --intent-marriage:   #0E9F6E;
+
+  /* Brand prayer-flag accent (decorative only — never as a primary surface) */
+  --flag-blue:    #1E3A8A;
+  --flag-white:   #FFFFFF;
+  --flag-red:     #DC2626;
+  --flag-green:   #059669;
+  --flag-yellow:  #F59E0B;
+
+  /* ============================================================
+     SHADOWS — soft, low-opacity, slightly warm
+     ============================================================ */
+  --shadow-sm:    0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:    0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-lg:    0 12px 32px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
+  --shadow-xl:    0 24px 48px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-focus: 0 0 0 4px rgba(234, 88, 12, 0.18);
+  --shadow-focus-danger: 0 0 0 4px rgba(220, 38, 38, 0.15);
+
+  /* ============================================================
+     RADII
+     ============================================================ */
+  --radius-xs:   4px;   /* chips, tags */
+  --radius-sm:   8px;   /* inputs, small buttons */
+  --radius-md:   12px;  /* buttons, badges */
+  --radius-lg:   16px;  /* cards (the dominant Nepsphere radius) */
+  --radius-xl:   24px;  /* hero, feature cards */
+  --radius-full: 9999px;
+
+  /* ============================================================
+     SPACING (4px base)
+     ============================================================ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body:    'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-deva:    'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale (px so we don't drift; line-heights unitless) */
+  --text-xs:    12px;
+  --text-sm:    14px;
+  --text-base:  16px;
+  --text-lg:    18px;
+  --text-xl:    20px;
+  --text-2xl:   24px;
+  --text-3xl:   30px;
+  --text-4xl:   36px;
+  --text-5xl:   48px;
+  --text-6xl:   60px;
+
+  --leading-tight:   1.2;
+  --leading-snug:    1.35;
+  --leading-normal:  1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  --max-content: 1200px;
+  --max-article: 720px;
+  --nav-height:  56px;
+  --geo-height:  56px;
+  --chrome-height: 112px;  /* nav + geo combined */
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --ease-out:  cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-in:   cubic-bezier(0.5, 0, 0.75, 0);
+  --dur-fast:  140ms;
+  --dur-base:  180ms;
+  --dur-slow:  220ms;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   Use the class OR the variables. Both stay in sync.
+   ============================================================ */
+
+html {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+/* Display & headings — calm, slightly tight, dense */
+.t-display, h1.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-5xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+}
+
+.t-h1, h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+}
+
+.t-h2, h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-3xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+}
+
+.t-h3, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  color: var(--fg-1);
+}
+
+.t-h4, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--fg-1);
+}
+
+/* Body */
+.t-body-lg {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  color: var(--fg-2);
+}
+
+.t-body, p {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--fg-2);
+  margin: 0 0 var(--space-4);
+}
+
+.t-body-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--fg-2);
+}
+
+/* Metadata, captions, labels */
+.t-meta, .t-caption {
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--fg-3);
+  font-weight: 500;
+}
+
+.t-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* Code */
+code, .t-code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--surface-2);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-xs);
+  color: var(--fg-1);
+}
+
+/* Devanagari helper */
+.t-deva {
+  font-family: var(--font-deva);
+}
+
+/* Tabular numerals — for prices, counts, tables */
+.t-num, .nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--dur-base) var(--ease-out);
+}
+a:hover { text-decoration: underline; }
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-xs);
+}
