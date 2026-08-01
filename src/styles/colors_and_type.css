@@ -11,35 +11,35 @@
      COLORS
      ============================================================ */
 
-  /* Primary — Sunrise Orange */
-  --primary-50:  #FFF7ED;
-  --primary-100: #FFEDD5;
-  --primary-200: #FED7AA;
-  --primary-300: #FDBA74;
-  --primary-400: #FB923C;
-  --primary-500: #F97316;     /* default primary */
-  --primary-600: #EA580C;     /* brand "Sunrise Orange" */
-  --primary-700: #C2410C;
-  --primary-800: #9A3412;
-  --primary-900: #7C2D12;
+  /* Primary — Matina Coral (matches mobile src/colors.js) */
+  --primary-50:  #FFF0F3;   /* primaryLight */
+  --primary-100: #FFD6DF;
+  --primary-200: #FFB3C4;
+  --primary-300: #FF8FA9;
+  --primary-400: #FF6B8E;
+  --primary-500: #FF4D6D;   /* primary */
+  --primary-600: #E8395A;   /* primaryDark */
+  --primary-700: #C22A48;   /* primaryDeep */
+  --primary-800: #9E1F39;
+  --primary-900: #7A142A;
 
-  /* Himalayan Blue retained as a heritage / secondary accent */
-  --heritage-blue: #1E3A8A;
+  /* Secondary — Coral (mobile secondary #FF7A59) */
+  --secondary:   #FF7A59;
 
-  --primary:     var(--primary-600);
+  --primary:     var(--primary-500);
   --primary-fg:  #FFFFFF;
 
-  /* Accent — Nepal Crimson */
+  /* Accent — kept for legacy use */
   --crimson-50:  #FEF2F2;
   --crimson-100: #FEE2E2;
   --crimson-300: #F87171;
-  --crimson-500: #DC2626;     /* brand "Nepal Red" */
+  --crimson-500: #DC2626;
   --crimson-700: #991B1B;
 
   --accent:      var(--crimson-500);
   --accent-fg:   #FFFFFF;
 
-  /* Saffron — secondary accent */
+  /* Amber — used for gold tier / warnings */
   --saffron-100: #FEF3C7;
   --saffron-300: #FBBF24;
   --saffron-500: #F59E0B;
@@ -113,7 +113,7 @@
   --shadow-md:    0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
   --shadow-lg:    0 12px 32px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.05);
   --shadow-xl:    0 24px 48px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.06);
-  --shadow-focus: 0 0 0 4px rgba(234, 88, 12, 0.18);
+  --shadow-focus: 0 0 0 4px rgba(255, 77, 109, 0.20);
   --shadow-focus-danger: 0 0 0 4px rgba(220, 38, 38, 0.15);
 
   /* ============================================================
