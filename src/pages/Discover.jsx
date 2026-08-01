@@ -45,9 +45,15 @@ export default function Discover() {
   // Photo carousel
   const [photoIdx, setPhotoIdx] = useState(0)
 
-  // Daily swipe limit
-  const DAILY_LIMIT = 10
-  const UNDO_LIMIT  = 3
+  // Tier system
+  const [tier, setTierState] = useState(() => localStorage.getItem('nh_tier') || 'free')
+  const TIER_LIMITS = { free: 10, gold: 50, platinum: 150, diamond: Infinity }
+  const DAILY_LIMIT  = TIER_LIMITS[tier] ?? 10
+  const canUndo      = ['gold', 'platinum', 'diamond'].includes(tier)
+  const canSuperLike = ['platinum', 'diamond'].includes(tier)
+
+  const [showLikesInfo, setShowLikesInfo] = useState(false)
+
   const [dailyCount, setDailyCount] = useState(() => {
     try {
       const d = JSON.parse(localStorage.getItem('nh_daily') || '{}')
@@ -109,7 +115,11 @@ export default function Discover() {
 
   const swipe = useCallback(async (action) => {
     if (idx >= profiles.length || exitAnim) return
-    if (dailyCount >= DAILY_LIMIT) return
+    if (DAILY_LIMIT !== Infinity && dailyCount >= DAILY_LIMIT) return
+    if (action === 'super_like' && !canSuperLike) {
+      showToast('⭐ Super Like requires Platinum or Diamond')
+      return
+    }
 
     const p = profiles[idx]
     setExitAnim(action)
@@ -135,8 +145,8 @@ export default function Discover() {
   }, [idx, profiles, exitAnim, dailyCount])
 
   const undo = () => {
-    if (undoCount >= UNDO_LIMIT) {
-      showToast(`⚡ Upgrade to Premium for unlimited undos`)
+    if (!canUndo) {
+      showToast('⚡ Upgrade to Gold or higher to unlock undo')
       return
     }
     setHistory(h => {
@@ -207,11 +217,17 @@ export default function Discover() {
     <div>
       <Nav />
       <div className="app-main">
-        <div style={{ textAlign: 'center', marginBottom: 20 }}>
-          <div className="eyebrow">Discover</div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 30, color: 'var(--fg-1)', margin: '8px 0 0' }}>
-            Nearby &amp; verified
-          </h1>
+        {/* Header — matches mobile layout */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--primary-600)', fontFamily: 'var(--font-display)' }}>Matina</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <button
+              onClick={() => setShowLikesInfo(true)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, color: 'var(--fg-3)', padding: '4px 8px' }}
+            >
+              {DAILY_LIMIT === Infinity ? `${dailyCount}/∞` : `${dailyCount}/${DAILY_LIMIT}`}
+            </button>
+          </div>
         </div>
 
         <div className="discover-head">
@@ -287,7 +303,7 @@ export default function Discover() {
         <div className="deck-stage-app">
           {loading ? (
             <div className="empty-deck"><div className="icon" style={{ fontSize: 36 }}>⏳</div></div>
-          ) : dailyCount >= DAILY_LIMIT ? (
+          ) : (DAILY_LIMIT !== Infinity && dailyCount >= DAILY_LIMIT) ? (
             <div className="oos-card">
               <div className="oos-icon">⚡</div>
               <h2 className="oos-heading">You're out of free swipes</h2>
@@ -425,16 +441,92 @@ export default function Discover() {
           )}
         </div>
 
-        {!loading && remaining > 0 && dailyCount < DAILY_LIMIT && (
+        {!loading && remaining > 0 && (DAILY_LIMIT === Infinity || dailyCount < DAILY_LIMIT) && (
           <div className="deck-actions">
-            <span className={`undo${undoCount >= UNDO_LIMIT ? ' disabled' : ''}`} onClick={undo} title={undoCount >= UNDO_LIMIT ? `${UNDO_LIMIT} undos used today` : 'Undo'}>↺</span>
-            <span className={`pass${dailyCount >= DAILY_LIMIT ? ' disabled' : ''}`} onClick={() => swipe('pass')}>✕</span>
-            <span className={`super-like${dailyCount >= DAILY_LIMIT ? ' disabled' : ''}`} onClick={() => swipe('super_like')} title="Super Like" style={{ fontSize: 22, cursor: 'pointer', opacity: dailyCount >= DAILY_LIMIT ? 0.4 : 1, transition: 'transform 0.15s', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 52, height: 52, borderRadius: '50%', border: '2px solid #F59E0B', background: '#fff', userSelect: 'none' }}>⭐</span>
-            <span className={`like${dailyCount >= DAILY_LIMIT ? ' disabled' : ''}`} onClick={() => swipe('like')}>♥</span>
+            <span className={`undo${!canUndo ? ' disabled' : ''}`} onClick={undo} title={canUndo ? 'Undo' : 'Upgrade to Gold to unlock undo'}>↺</span>
+            <span className="pass" onClick={() => swipe('pass')}>✕</span>
+            <span
+              onClick={() => swipe('super_like')}
+              title={canSuperLike ? 'Super Like' : 'Upgrade to Platinum for Super Like'}
+              style={{
+                fontSize: 22, cursor: 'pointer', opacity: canSuperLike ? 1 : 0.4,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 52, height: 52, borderRadius: '50%',
+                border: '2px solid #F59E0B', background: '#fff', userSelect: 'none',
+              }}
+            >⭐</span>
+            <span className="like" onClick={() => swipe('like')}>♥</span>
           </div>
         )}
 
       </div>
+
+      {/* Likes info modal */}
+      {showLikesInfo && (() => {
+        const TIER_META = { free: { label: 'Free', color: 'var(--fg-3)', icon: '☁️' }, gold: { label: 'Gold', color: '#F59E0B', icon: '🥇' }, platinum: { label: 'Platinum', color: '#8B5CF6', icon: '🔷' }, diamond: { label: 'Diamond', color: '#06B6D4', icon: '💎' } }
+        const TIERS_LIST = [
+          { id: 'free', label: 'Free', price: 'Free', features: '10 likes/day' },
+          { id: 'gold', label: '🥇 Gold', price: '$19.99/mo', features: '50 likes/day · Undo' },
+          { id: 'platinum', label: '🔷 Platinum', price: '$29.99/mo', features: '150 likes/day · Super Like' },
+          { id: 'diamond', label: '💎 Diamond', price: '$39.99/mo', features: 'Unlimited · All features' },
+        ]
+        const meta  = TIER_META[tier] || TIER_META.free
+        const total = DAILY_LIMIT === Infinity ? null : DAILY_LIMIT
+        const pct   = total ? Math.min(dailyCount / total, 1) : 0
+
+        return (
+          <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} onClick={() => setShowLikesInfo(false)}>
+            <div style={{ background: '#fff', borderRadius: '24px 24px 0 0', padding: 28, width: '100%', maxWidth: 480, maxHeight: '70vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+              <div style={{ textAlign: 'center', marginBottom: 20 }}>
+                <div style={{ width: 40, height: 4, borderRadius: 99, background: 'var(--border)', margin: '0 auto 16px' }} />
+                <div style={{ fontWeight: 800, fontSize: 18, fontFamily: 'var(--font-display)', color: 'var(--fg-1)' }}>Daily Likes</div>
+              </div>
+
+              {/* Tier badge */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                <span style={{ fontSize: 28 }}>{meta.icon}</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 16, color: meta.color }}>{meta.label} Plan</div>
+                  <div style={{ fontSize: 13, color: 'var(--fg-3)' }}>{total ? `${total} likes per day` : 'Unlimited likes'}</div>
+                </div>
+              </div>
+
+              {/* Progress */}
+              <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 16, padding: 16, marginBottom: 14 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+                  <span style={{ fontSize: 13, color: 'var(--fg-2)' }}>Used today</span>
+                  <span style={{ fontSize: 20, fontWeight: 700, color: meta.color }}>{dailyCount}{total ? `/${total}` : ''}</span>
+                </div>
+                {total ? (
+                  <div style={{ height: 8, background: 'var(--border)', borderRadius: 99, overflow: 'hidden', marginBottom: 10 }}>
+                    <div style={{ height: '100%', width: `${pct * 100}%`, background: meta.color, borderRadius: 99 }} />
+                  </div>
+                ) : (
+                  <div style={{ fontSize: 15, fontWeight: 700, color: meta.color, marginBottom: 10 }}>∞ Unlimited</div>
+                )}
+                <div style={{ fontSize: 11, color: 'var(--fg-4)' }}>Resets at midnight · local time</div>
+              </div>
+
+              {/* Dev tier selector */}
+              <div style={{ marginBottom: 14 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--fg-3)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Dev — Change Tier</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {TIERS_LIST.map(t => (
+                    <button key={t.id} onClick={() => { setTierState(t.id); localStorage.setItem('nh_tier', t.id) }} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 14px', borderRadius: 10, cursor: 'pointer', border: tier === t.id ? `2px solid ${TIER_META[t.id]?.color}` : '1.5px solid var(--border)', background: tier === t.id ? `${TIER_META[t.id]?.color}18` : '#fff', fontFamily: 'inherit' }}>
+                      <span style={{ fontWeight: 700, fontSize: 14, color: tier === t.id ? TIER_META[t.id]?.color : 'var(--fg-1)' }}>{t.label}</span>
+                      <span style={{ fontSize: 12, color: 'var(--fg-3)' }}>{t.price}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button onClick={() => { localStorage.removeItem('nh_daily'); setDailyCount(0); setShowLikesInfo(false) }} style={{ width: '100%', background: 'none', border: 'none', color: 'var(--fg-4)', fontSize: 12, cursor: 'pointer', paddingBlock: 8 }}>
+                Reset counter (dev)
+              </button>
+            </div>
+          </div>
+        )
+      })()}
 
       <div className={`toast${toast ? ' show' : ''}`}>{toast}</div>
 

@@ -12,7 +12,7 @@ export default function Nav({ showLinks = true, showCta = true }) {
       <div className="wrap">
         <Link className="brand" to="/">
           <Logo size={30} />
-          NepHearts
+          Matina
         </Link>
         {showLinks && (
           <div className="links">

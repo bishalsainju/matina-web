@@ -493,7 +493,7 @@ export default function Signup() {
               You're in, {name || 'friend'}.
             </h1>
             <p style={{ color: 'var(--fg-3)', fontSize: 17, lineHeight: 1.65, margin: '0 0 24px' }}>
-              Welcome to NepHearts — a verified Nepali community you can trust.
+              Welcome to Matina — a verified Nepali community you can trust.
             </p>
 
             <div className="success-pills">

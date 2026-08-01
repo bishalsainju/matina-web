@@ -32,7 +32,7 @@ export default function Login() {
       <Nav showLinks={false} showCta={false} />
       <div className="app-main">
         <div className="eyebrow">Welcome back</div>
-        <h1 className="step-title">Sign in to NepHearts</h1>
+        <h1 className="step-title">Sign in to Matina</h1>
         <p className="step-sub">Continue finding your community.</p>
 
         {error && <div className="alert-error">{error}</div>}
@@ -74,7 +74,7 @@ export default function Login() {
         </form>
 
         <p className="signin-link" style={{ marginTop: 24 }}>
-          New to NepHearts?{' '}
+          New to Matina?{' '}
           <Link to="/signup" style={{ color: 'var(--primary-600)', fontWeight: 600 }}>Create an account</Link>
         </p>
 

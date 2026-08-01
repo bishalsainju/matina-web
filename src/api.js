@@ -28,13 +28,18 @@ export const api = {
 
   // Profiles
   updateProfile: (data)        => req('PATCH', '/profiles/me', data),
+  updateMe:      (data)        => req('PATCH', '/profiles/me', data),
 
   // Discover
   discover: (filters = {})    => req('GET', '/discover?' + new URLSearchParams(filters)),
 
   // Likes
   swipe:    (to_user_id, action) => req('POST', '/likes', { to_user_id, action }),
+  like:     (to_user_id)         => req('POST', '/likes', { to_user_id, action: 'like' }),
+  pass:     (to_user_id)         => req('POST', '/likes', { to_user_id, action: 'pass' }),
+  superLike:(to_user_id)         => req('POST', '/likes', { to_user_id, action: 'super_like' }),
   likedMe:  ()                   => req('GET',  '/likes/liked-me'),
+  iLiked:   ()                   => req('GET',  '/likes/i-liked'),
 
   // Matches
   matches: ()                 => req('GET', '/matches'),

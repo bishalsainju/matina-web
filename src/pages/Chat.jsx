@@ -42,6 +42,9 @@ export default function Chat() {
   useEffect(() => {
     if (!otherId) return
 
+    // Mark conversation as seen (mirrors mobile nh_seen_* logic)
+    localStorage.setItem(`nh_seen_${otherId}`, String(Date.now()))
+
     api.messages(otherId)
       .then(setMessages)
       .catch(() => {})
@@ -100,10 +103,17 @@ export default function Chat() {
     <div>
       <nav>
         <div className="wrap">
-          <Link className="brand" to="/matches" style={{ gap: 14 }}>
-            <span style={{ fontSize: 20 }}>←</span>
-            <div className="av" style={{ width: 36, height: 36, borderRadius: '50%', background: otherAvatar, flexShrink: 0 }} />
-            <span>{otherName}</span>
+          <Link to="/matches" style={{ fontSize: 20, marginRight: 6, textDecoration: 'none', color: 'var(--fg-2)' }}>←</Link>
+          <Link
+            className="brand"
+            to={`/users/${otherId}`}
+            style={{ gap: 10, flex: 1, textDecoration: 'none' }}
+          >
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: otherAvatar, flexShrink: 0 }} />
+            <div>
+              <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--fg-1)', lineHeight: 1.2 }}>{otherName}</div>
+              <div style={{ fontSize: 11, color: 'var(--primary-600)', fontWeight: 600 }}>View profile</div>
+            </div>
           </Link>
         </div>
       </nav>
