@@ -132,6 +132,97 @@ export default function Signup() {
 
   const progressPct = step >= TOTAL_STEPS ? 100 : (step / TOTAL_STEPS) * 100
 
+  if (step === 1) return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'linear-gradient(160deg, #FF7A59 0%, #FF4D6D 55%, #C22A48 100%)' }}>
+      {/* Hero */}
+      <div style={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: 60, paddingBottom: 44, gap: 8 }}>
+        <div style={{ width: 72, height: 72, borderRadius: 20, background: 'rgba(255,255,255,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 38, marginBottom: 4, backdropFilter: 'blur(4px)', border: '1.5px solid rgba(255,255,255,0.3)' }}>
+          💕
+        </div>
+        <div style={{ fontSize: 32, fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)', letterSpacing: '0.5px' }}>Matina</div>
+        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.08em' }}>— Where Nepali Hearts Meet —</div>
+      </div>
+
+      {/* White sheet */}
+      <div style={{ flex: 1, background: '#fff', borderRadius: '28px 28px 0 0', marginTop: -24, padding: '32px 28px 48px', display: 'flex', flexDirection: 'column', alignItems: 'center', overflowY: 'auto' }}>
+        <div style={{ width: '100%', maxWidth: 420 }}>
+          <div style={{ fontSize: 22, fontWeight: 700, fontFamily: 'var(--font-display)', color: 'var(--fg-1)', marginBottom: 6 }}>Create your account</div>
+          <p style={{ fontSize: 14, color: 'var(--fg-3)', margin: '0 0 20px' }}>Your email stays private — we never share it.</p>
+
+          <div className="progress-bar" style={{ marginBottom: 24 }}>
+            <div className="progress-fill" style={{ width: `${progressPct}%` }} />
+          </div>
+
+          <div className={`field${errors.email ? ' field-error' : ''}`}>
+            <label>Email address</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              autoComplete="email"
+            />
+            {errors.email && <div className="field-msg">{errors.email}</div>}
+          </div>
+
+          <div className={`field${errors.password ? ' field-error' : ''}`}>
+            <label>Password</label>
+            <div className="input-wrap">
+              <input
+                type={showPw ? 'text' : 'password'}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="At least 8 characters"
+                autoComplete="new-password"
+              />
+              <button type="button" className="pw-toggle" onClick={() => setShowPw(v => !v)}>
+                {showPw ? '🙈' : '👁️'}
+              </button>
+            </div>
+            {password && (
+              <div className="pw-strength">
+                <div className="pw-bars">
+                  {[1, 2, 3, 4, 5].map(i => (
+                    <div key={i} className="pw-bar" style={{ background: pwStrength >= i ? STRENGTH_COLORS[pwStrength] : 'var(--border)' }} />
+                  ))}
+                </div>
+                <span style={{ color: STRENGTH_COLORS[pwStrength], fontSize: 12, fontWeight: 600 }}>{STRENGTH_LABELS[pwStrength]}</span>
+              </div>
+            )}
+            {errors.password && <div className="field-msg">{errors.password}</div>}
+          </div>
+
+          <div className={`field${errors.confirmPassword ? ' field-error' : ''}`}>
+            <label>Confirm password</label>
+            <div className="input-wrap">
+              <input
+                type={showConfirm ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={e => setConfirmPassword(e.target.value)}
+                placeholder="Repeat your password"
+                autoComplete="new-password"
+              />
+              <button type="button" className="pw-toggle" onClick={() => setShowConfirm(v => !v)}>
+                {showConfirm ? '🙈' : '👁️'}
+              </button>
+            </div>
+            {errors.confirmPassword && <div className="field-msg">{errors.confirmPassword}</div>}
+          </div>
+
+          <div className="step-actions" style={{ marginTop: 8 }}>
+            <button className="btn btn-primary btn-block" onClick={() => attempt(2)} style={{ boxShadow: '0 6px 20px rgba(255,77,109,0.35)' }}>
+              Continue →
+            </button>
+          </div>
+          <p className="signin-link" style={{ marginTop: 20 }}>
+            Already have an account?{' '}
+            <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600 }}>Sign in</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div>
       <Nav showLinks={false} showCta={false} />
@@ -141,86 +232,6 @@ export default function Signup() {
           <div className="progress-fill" style={{ width: `${progressPct}%` }} />
         </div>
 
-        {/* ── Step 1: Account ────────────────────────────────────── */}
-        {step === 1 && (
-          <div className="step-panel active">
-            <div className="eyebrow">Step 1 of {TOTAL_STEPS}</div>
-            <h1 className="step-title">Create your account</h1>
-            <p className="step-sub">Your email stays private — we never share it.</p>
-
-            <div className={`field${errors.email ? ' field-error' : ''}`}>
-              <label>Email address</label>
-              <input
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                autoComplete="email"
-              />
-              {errors.email && <div className="field-msg">{errors.email}</div>}
-            </div>
-
-            <div className={`field${errors.password ? ' field-error' : ''}`}>
-              <label>Password</label>
-              <div className="input-wrap">
-                <input
-                  type={showPw ? 'text' : 'password'}
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  placeholder="At least 8 characters"
-                  autoComplete="new-password"
-                />
-                <button type="button" className="pw-toggle" onClick={() => setShowPw(v => !v)}>
-                  {showPw ? '🙈' : '👁️'}
-                </button>
-              </div>
-              {password && (
-                <div className="pw-strength">
-                  <div className="pw-bars">
-                    {[1, 2, 3, 4, 5].map(i => (
-                      <div
-                        key={i}
-                        className="pw-bar"
-                        style={{ background: pwStrength >= i ? STRENGTH_COLORS[pwStrength] : 'var(--border)' }}
-                      />
-                    ))}
-                  </div>
-                  <span style={{ color: STRENGTH_COLORS[pwStrength], fontSize: 12, fontWeight: 600 }}>
-                    {STRENGTH_LABELS[pwStrength]}
-                  </span>
-                </div>
-              )}
-              {errors.password && <div className="field-msg">{errors.password}</div>}
-            </div>
-
-            <div className={`field${errors.confirmPassword ? ' field-error' : ''}`}>
-              <label>Confirm password</label>
-              <div className="input-wrap">
-                <input
-                  type={showConfirm ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={e => setConfirmPassword(e.target.value)}
-                  placeholder="Repeat your password"
-                  autoComplete="new-password"
-                />
-                <button type="button" className="pw-toggle" onClick={() => setShowConfirm(v => !v)}>
-                  {showConfirm ? '🙈' : '👁️'}
-                </button>
-              </div>
-              {errors.confirmPassword && <div className="field-msg">{errors.confirmPassword}</div>}
-            </div>
-
-            <div className="step-actions">
-              <button className="btn btn-primary btn-block" onClick={() => attempt(2)}>
-                Continue
-              </button>
-            </div>
-            <p className="signin-link">
-              Already have an account?{' '}
-              <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600 }}>Sign in</Link>
-            </p>
-          </div>
-        )}
 
         {/* ── Step 2: Identity ───────────────────────────────────── */}
         {step === 2 && (

@@ -403,37 +403,24 @@ export default function Discover() {
                       <span className="icon-btn" onClick={() => showToast(`Saved ${p.name}`)} title="Save">🔖</span>
                       <span className="icon-btn" onClick={() => showToast('Reported — our team will review')} title="Report">⚑</span>
                     </div>
-                    <div>
+
+                    {/* Bottom info scrim — overlaid on photo like mobile */}
+                    <div className="card-scrim">
                       <div className="name">
                         {p.name}, {p.age}
                         {p.is_verified ? <span className="verified-badge">✓ Verified</span> : null}
                       </div>
                       <div className="loc">📍 {p.city}</div>
+                      {p.bio && <p className="scrim-bio">{p.bio}</p>}
+                      {[p.occupation, p.height, p.religion].filter(Boolean).length > 0 && (
+                        <div className="card-details">
+                          {p.occupation && <span>💼 {p.occupation}</span>}
+                          {p.height     && <span>📏 {p.height}</span>}
+                          {p.religion   && <span>🕉 {p.religion}</span>}
+                        </div>
+                      )}
+                      {tags.length > 0 && <div className="tags">{tags.map(t => <span key={t}>{t}</span>)}</div>}
                     </div>
-                  </div>
-
-                  <div className="info" onPointerDown={e => e.stopPropagation()}>
-                    <p>{p.bio || `${p.name} hasn't written a bio yet.`}</p>
-                    {/* Detail chips */}
-                    {[p.occupation, p.education, p.height, p.hometown, p.religion,
-                      p.drinking && `Drinks ${p.drinking.toLowerCase()}`,
-                      p.diet].filter(Boolean).length > 0 && (
-                      <div className="card-details">
-                        {p.occupation && <span>💼 {p.occupation}</span>}
-                        {p.education  && <span>🎓 {p.education}</span>}
-                        {p.height     && <span>📏 {p.height}</span>}
-                        {p.hometown   && <span>🏠 {p.hometown}</span>}
-                        {p.religion   && <span>🕉 {p.religion}</span>}
-                        {p.drinking   && <span>🍺 {p.drinking}</span>}
-                        {p.diet       && <span>🥗 {p.diet}</span>}
-                      </div>
-                    )}
-                    {p.languages?.length > 0 && (
-                      <div className="card-details">
-                        {p.languages.map(l => <span key={l}>🗣 {l}</span>)}
-                      </div>
-                    )}
-                    {tags.length > 0 && <div className="tags">{tags.map(t => <span key={t}>{t}</span>)}</div>}
                   </div>
                 </div>
               )

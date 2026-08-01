@@ -9,6 +9,7 @@ import Matches     from './pages/Matches.jsx'
 import LikedMe     from './pages/LikedMe.jsx'
 import Chat        from './pages/Chat.jsx'
 import Profile     from './pages/Profile.jsx'
+import EditProfile from './pages/EditProfile.jsx'
 import UserProfile from './pages/UserProfile.jsx'
 
 export default function App() {
@@ -22,8 +23,9 @@ export default function App() {
         <Route path="/liked-me"  element={<ProtectedRoute><LikedMe /></ProtectedRoute>} />
         <Route path="/matches"   element={<ProtectedRoute><Matches /></ProtectedRoute>} />
         <Route path="/chat"     element={<ProtectedRoute><Chat /></ProtectedRoute>} />
-        <Route path="/profile"  element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/users/:id" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+        <Route path="/profile"      element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/profile/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
+        <Route path="/users/:id"    element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
       </Routes>
     </AuthProvider>
   )
