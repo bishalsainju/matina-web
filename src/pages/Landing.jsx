@@ -12,101 +12,80 @@ export default function Landing() {
         <div className="topo" style={{ backgroundImage: "url('/topo-pattern.svg')" }} />
         <div className="flag-stripe" />
         <div className="hero-inner">
-          <div className="eyebrow">🇳🇵 Meet Matina.</div>
-          <h1>Meeting<br />Nepali Hearts.</h1>
-          <p>A dating app created exclusively for Nepalis living abroad — wherever home is now.</p>
+          <div className="eyebrow">One app. One purpose.</div>
+          <h1>The right person.<br />Same roots.<br /><span className="accent">Closer than you think.</span></h1>
+          <p>Meet verified Nepalis nearby who understand your culture, values, and what truly matters.</p>
           <div className="actions">
             <Link className="btn btn-primary" to="/signup" style={{ background: 'rgba(255,255,255,0.22)', backdropFilter: 'blur(8px)', color: '#fff', border: '1.5px solid rgba(255,255,255,0.45)' }}>Join Matina free</Link>
+            <a className="btn" style={{ background: 'rgba(0,0,0,0.18)', border: '1px solid rgba(255,255,255,0.2)', color: '#FAFAF7' }} href="#how">See how it works</a>
           </div>
         </div>
         <div className="flag-stripe" />
       </div>
 
-      {/* The Problem — narrative */}
+      {/* Problem */}
       <section className="section-cream">
-        <div className="wrap" style={{ maxWidth: 720, paddingTop: 72, paddingBottom: 72 }}>
-          <div className="eyebrow" style={{ marginBottom: 32 }}>The problem</div>
-          <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(22px,3.2vw,34px)', lineHeight: 1.35, color: 'var(--fg-1)', marginBottom: 28 }}>
-            If you've ever used Tinder or Bumble, you know the experience.
-          </p>
-          <p style={{ fontSize: 'clamp(17px,2vw,21px)', lineHeight: 1.75, color: 'var(--fg-2)', marginBottom: 20 }}>
-            You can swipe through hundreds — even thousands — of people nearby.
-          </p>
-          <p style={{ fontSize: 'clamp(17px,2vw,21px)', lineHeight: 1.75, color: 'var(--fg-1)', fontWeight: 600, marginBottom: 0 }}>
-            But if you're specifically looking to meet another Nepali, it can still feel almost impossible.
-          </p>
-        </div>
-      </section>
-
-      {/* Cities */}
-      <section style={{ background: 'var(--warm-900)' }}>
-        <div className="wrap" style={{ maxWidth: 720, paddingTop: 72, paddingBottom: 40 }}>
-          <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(20px,3vw,32px)', lineHeight: 1.45, color: '#FAFAF7', marginBottom: 20 }}>
-            Whether you're in Dallas, Sydney, Toronto, London, Dubai, or Tokyo —
-          </p>
-          <p style={{ fontSize: 'clamp(17px,2vw,21px)', lineHeight: 1.7, color: 'rgba(250,246,239,0.78)', marginBottom: 0 }}>
-            your Nepali community may be there. You just can't easily find each other.
-          </p>
-        </div>
-        <div className="global-grid" style={{ paddingTop: 8, paddingBottom: 64 }}>
-          <div className="grid4">
-            <div className="city-card live"><div className="name">USA</div><div className="sub" style={{ color: 'rgba(255,255,255,0.85)' }}>Dallas · NYC · Bay Area</div></div>
-            <div className="city-card"><div className="name">Canada</div><div className="sub">Toronto · Vancouver</div></div>
-            <div className="city-card"><div className="name">Australia</div><div className="sub">Sydney · Melbourne</div></div>
-            <div className="city-card"><div className="name">UK</div><div className="sub">London · Reading</div></div>
-            <div className="city-card"><div className="name">UAE</div><div className="sub">Dubai · Abu Dhabi</div></div>
-            <div className="city-card"><div className="name">Japan</div><div className="sub">Tokyo · Osaka</div></div>
-            <div className="city-card"><div className="name">Germany</div><div className="sub">Berlin · Frankfurt</div></div>
-            <div className="city-card"><div className="name">+ More</div><div className="sub">Everywhere Nepalis are</div></div>
+        <div className="problem">
+          <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(30px,4vw,48px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--fg-1)', margin: 0 }}>
+            Millions around the world.<br /><span style={{ color: 'var(--primary-600)' }}>But still hard to<br />find each other.</span>
+          </h2>
+          <div>
+            <p>There are millions of Nepalis living outside Nepal, yet meeting someone compatible is surprisingly difficult. Most people rely on chance — a mutual friend, a community event, a wedding, or a Facebook group.</p>
+            <p>General dating apps are built for everyone, which means finding another Nepali often feels like searching for a needle in a haystack.</p>
+            <p className="strong">There should be one place where Nepalis, wherever they live, can meet with intention.</p>
           </div>
         </div>
       </section>
 
-      {/* Why Matina — solution + phone mock */}
+      {/* Idea */}
       <section>
-        <div className="product">
-          <div className="product-copy">
-            <div className="eyebrow">That's why we're building Matina.</div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(28px,3.8vw,42px)', lineHeight: 1.12, letterSpacing: '-0.02em', color: 'var(--fg-1)', margin: '16px 0 20px' }}>
-              A dating app created exclusively for Nepalis living abroad.
-            </h2>
-            <p style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--fg-2)', marginBottom: 28 }}>
-              Whether you're looking for dating, a meaningful relationship, or eventually marriage — Matina helps you connect with Nepalis who share your culture, language, and values.
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 14 }}>
-              {['Dating', 'Relationship', 'Marriage'].map(label => (
-                <span key={label} style={{ background: 'var(--primary-50)', color: 'var(--primary-600)', border: '1.5px solid var(--primary-200)', borderRadius: 99, padding: '7px 18px', fontSize: 14, fontWeight: 600 }}>{label}</span>
-              ))}
+        <div className="section-head">
+          <div className="eyebrow">The idea</div>
+          <h2>One app. One purpose.</h2>
+        </div>
+        <div className="wrap">
+          <div className="grid3">
+            <div className="card">
+              <div className="num">01</div>
+              <h3>Same city, same roots.</h3>
+              <p>Meet verified Nepalis who actually live near you, and can have chiya with you this weekend.</p>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              {['Culture', 'Language', 'Values'].map(label => (
-                <span key={label} style={{ background: 'rgba(0,0,0,0.04)', color: 'var(--fg-2)', border: '1.5px solid var(--border)', borderRadius: 99, padding: '7px 18px', fontSize: 14, fontWeight: 500 }}>{label}</span>
-              ))}
+            <div className="card" style={{ background: 'var(--primary-50)', borderColor: 'var(--primary-200)' }}>
+              <div className="num">02</div>
+              <h3>Built on trust.</h3>
+              <p>Government ID and selfie verification keep the community authentic and real.</p>
+            </div>
+            <div className="card">
+              <div className="num">03</div>
+              <h3>Just connection. No noise.</h3>
+              <p>No feeds. No marketplace. No distractions. Just meaningful connections, Nepali-first.</p>
             </div>
           </div>
-          <div className="phone-frame">
-            <div className="phone-screen">
-              <div style={{ margin: 12, borderRadius: 20, overflow: 'hidden' }}>
-                <div className="match-card-fullbleed">
-                  <div style={{ position: 'absolute', top: 10, left: 10, right: 10, display: 'flex', gap: 4, zIndex: 2 }}>
-                    <div style={{ flex: 1, height: 3, borderRadius: 99, background: 'rgba(255,255,255,0.9)' }} />
-                    <div style={{ flex: 1, height: 3, borderRadius: 99, background: 'rgba(255,255,255,0.38)' }} />
-                    <div style={{ flex: 1, height: 3, borderRadius: 99, background: 'rgba(255,255,255,0.38)' }} />
-                  </div>
-                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, fontWeight: 800, color: '#fff' }}>S</div>
-                  </div>
-                  <div className="match-card-scrim">
-                    <div className="name">Sabina, 26 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: 'rgba(255,255,255,0.92)', color: 'var(--primary-700)', fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, marginLeft: 4 }}>✓ Verified</span></div>
-                    <div className="loc">📍 Toronto, ON</div>
-                    <div className="bio">Grew up in Pokhara, moved to Toronto for grad school. Loves hiking and weekend markets.</div>
-                    <div className="match-actions">
-                      <span className="pass">✕</span>
-                      <span className="like">♥</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section id="how" style={{ background: 'var(--warm-900)', color: '#FAFAF7' }}>
+        <div className="section-head">
+          <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>How it works</div>
+          <h2 style={{ color: '#FAFAF7' }}>Three steps.<br /><span style={{ color: 'var(--secondary)' }}>One minute.</span></h2>
+        </div>
+        <div className="wrap">
+          <div className="grid3">
+            <div className="card" style={{ background: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.12)' }}>
+              <div className="num" style={{ color: 'var(--secondary)' }}>1</div>
+              <h3 style={{ color: '#FAFAF7' }}>Verify</h3>
+              <p style={{ color: 'rgba(250,246,239,0.78)' }}>Upload your ID and selfie once. Your information stays private.</p>
+            </div>
+            <div className="card" style={{ background: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.12)' }}>
+              <div className="num" style={{ color: 'var(--secondary)' }}>2</div>
+              <h3 style={{ color: '#FAFAF7' }}>Set your city</h3>
+              <p style={{ color: 'rgba(250,246,239,0.78)' }}>Dallas. Sydney. Toronto. London. Anywhere Nepalis call home.</p>
+            </div>
+            <div className="card" style={{ background: 'rgba(255,255,255,0.06)', borderColor: 'rgba(255,255,255,0.12)' }}>
+              <div className="num" style={{ color: 'var(--secondary)' }}>3</div>
+              <h3 style={{ color: '#FAFAF7' }}>Meet nearby</h3>
+              <p style={{ color: 'rgba(250,246,239,0.78)' }}>Discover verified Nepalis nearby and chat when you both match.</p>
             </div>
           </div>
         </div>
@@ -141,12 +120,84 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Product — full-bleed card mock */}
+      <section>
+        <div className="product">
+          <div className="product-copy">
+            <div className="eyebrow">Product</div>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(30px,4vw,44px)', lineHeight: 1.1, letterSpacing: '-0.02em', color: 'var(--fg-1)', margin: '16px 0 20px' }}>
+              Simple.<br />Intentional.
+            </h2>
+            <p>One profile at a time. No endless swiping. No social feed. No games. Just verified Nepalis nearby looking for meaningful relationships.</p>
+          </div>
+          <div className="phone-frame">
+            <div className="phone-screen">
+              {/* Full-bleed card like the real app */}
+              <div style={{ margin: 12, borderRadius: 20, overflow: 'hidden' }}>
+                <div className="match-card-fullbleed">
+                  {/* Slide dots */}
+                  <div style={{ position: 'absolute', top: 10, left: 10, right: 10, display: 'flex', gap: 4, zIndex: 2 }}>
+                    <div style={{ flex: 1, height: 3, borderRadius: 99, background: 'rgba(255,255,255,0.9)' }} />
+                    <div style={{ flex: 1, height: 3, borderRadius: 99, background: 'rgba(255,255,255,0.38)' }} />
+                    <div style={{ flex: 1, height: 3, borderRadius: 99, background: 'rgba(255,255,255,0.38)' }} />
+                  </div>
+                  {/* Avatar initial */}
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, fontWeight: 800, color: '#fff' }}>S</div>
+                  </div>
+                  {/* Info scrim */}
+                  <div className="match-card-scrim">
+                    <div className="name">Sabina, 26 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: 'rgba(255,255,255,0.92)', color: 'var(--primary-700)', fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 99, marginLeft: 4 }}>✓ Verified</span></div>
+                    <div className="loc">📍 Toronto, ON</div>
+                    <div className="bio">Grew up in Pokhara, moved to Toronto for grad school. Loves hiking and weekend markets.</div>
+                    <div className="match-actions">
+                      <span className="pass">✕</span>
+                      <span className="like">♥</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Global */}
+      <section style={{ background: 'var(--warm-900)' }}>
+        <div className="section-head">
+          <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Global from day one</div>
+          <h2 style={{ color: '#FAFAF7' }}>Wherever Nepalis are,<br /><span style={{ color: 'var(--secondary)' }}>Matina is there.</span></h2>
+        </div>
+        <div className="global-grid">
+          <div className="grid4">
+            <div className="city-card live"><div className="name">USA</div><div className="sub" style={{ color: 'rgba(255,255,255,0.85)' }}>Dallas · NYC · Bay Area</div></div>
+            <div className="city-card"><div className="name">Canada</div><div className="sub">Toronto · Vancouver</div></div>
+            <div className="city-card"><div className="name">Australia</div><div className="sub">Sydney · Melbourne</div></div>
+            <div className="city-card"><div className="name">UK</div><div className="sub">London · Reading</div></div>
+          </div>
+          <p className="global-note">As soon as enough verified members join an area, matching becomes available — North America, Australia, United Kingdom, Middle East, and everywhere Nepalis call home.</p>
+        </div>
+      </section>
+
+      {/* Free */}
+      <section className="section-cream">
+        <div className="section-head">
+          <div className="eyebrow">No catch</div>
+          <h2>Free to start.<br />Free to match.</h2>
+        </div>
+        <div className="free-list">
+          <div className="free-item"><span className="tick">✓</span><div><div className="t1">Verification</div><div className="t2">Free. Always.</div></div></div>
+          <div className="free-item"><span className="tick">✓</span><div><div className="t1">Matching &amp; messaging</div><div className="t2">Free. Always.</div></div></div>
+        </div>
+        <p style={{ textAlign: 'center', maxWidth: 620, margin: '24px auto 0', fontSize: 16, color: 'var(--fg-3)' }}>No paywalls. No ads. Premium features may come later, but meeting people will always remain free.</p>
+      </section>
+
       {/* Final CTA */}
       <section id="join" className="cta-final">
         <div className="topo" style={{ position: 'absolute', inset: 0, backgroundImage: "url('/topo-pattern.svg')", backgroundSize: '600px', opacity: 0.06 }} />
         <div style={{ position: 'relative', zIndex: 2 }}>
-          <div className="eyebrow" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: 20 }}>Follow our journey as we build the community.</div>
-          <h2>❤️ Meeting<br />Nepali Hearts.</h2>
+          <div className="deva">धन्यवाद</div>
+          <h2>Find your person.<br />Wherever home is now.</h2>
           <div className="actions" style={{ marginTop: 8 }}>
             <Link className="btn btn-primary" to="/signup" style={{ background: 'var(--primary-500)', boxShadow: '0 8px 28px rgba(255,77,109,0.45)' }}>Join Matina free</Link>
           </div>
@@ -158,7 +209,7 @@ export default function Landing() {
           <Logo size={22} />
           Matina
         </div>
-        ❤️ Meeting Nepali Hearts.
+        Built for Nepalis, wherever home is now.
       </footer>
     </div>
   )
